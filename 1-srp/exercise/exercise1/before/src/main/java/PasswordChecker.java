@@ -1,6 +1,6 @@
 public class PasswordChecker {
     public boolean isPasswordValid(String password) {
-        if (password.length() < Constants.MIN_PASSWORD_LENGTH) {
+        if (password.length() < PasswordConstants.MIN_PASSWORD_LENGTH) {
             return false;
         }
 
@@ -11,7 +11,7 @@ public class PasswordChecker {
                 nbSpecialChars++;
             }
         }
-        if(nbSpecialChars < Constants.NB_SPECIAL_CHARS_IN_PASSWORD){
+        if(nbSpecialChars < PasswordConstants.NB_SPECIAL_CHARS_IN_PASSWORD){
             return false;
         }
 
