@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Rectangle extends Shape {
     private int minX;
     private int minY;
@@ -26,5 +28,11 @@ public class Rectangle extends Shape {
 
     public int getMaxY() {
         return maxY;
+    }
+
+    @Override
+    public boolean isPointInsideArea(int x, int y) {
+        return x <= this.getMaxX() && x >= this.getMinX() &&
+                y >= this.getMinY() && y <= this.getMaxY();
     }
 }
