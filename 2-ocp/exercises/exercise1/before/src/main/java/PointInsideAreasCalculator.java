@@ -1,30 +1,15 @@
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class PointInsideAreasCalculator {
-    public boolean isPointInsideAreas(int x, int y, List<Shape> shapes) {
+
+    public Map<Shape, Boolean> isPointInsideAreas(int x, int y, Set<Shape> shapes) {
+        Map<Shape, Boolean> shapeAreas = new HashMap<>(shapes.size());
         for (var s : shapes) {
-            // For each new shape type we need to modify
-            // this calculator
-
-            if (s instanceof Rectangle r) {
-                if (x <= r.getMaxX() &&
-                        x >= r.getMinX() &&
-                        y >= r.getMinY() &&
-                        y <= r.getMaxY()) {
-                    return true;
-                }
-            }
-
-            if (s instanceof Circle c) {
-                var distToOrigin = Math.sqrt(
-                        (c.getyOrigin() - y) * (c.getyOrigin() - y) +
-                        (c.getxOrigin() - x) * (c.getxOrigin() - x)
-                );
-                if (distToOrigin <= c.getRadius()) {
-                    return true;
-                }
-            }
+            shapeAreas.put(s, s.isPointInsideArea(x, y));
         }
-        return false;
+        return shapeAreas;
     }
 }
