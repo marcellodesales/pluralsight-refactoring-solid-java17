@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class TaxCalculator {
+
     public double calculateTotalTaxes(List<Employee> employees) {
         var taxes = 0.0;
 
@@ -26,5 +27,22 @@ public class TaxCalculator {
         }
 
         return employeeTaxes;
+    }
+
+    public double calculateTotalTaxesWithNationalityDetails(List<Employee> employees){
+        var taxes = 0.0;
+
+        for (var e : employees) {
+            var tax =  calculateTaxForEmployee(e);
+
+            // take nationality into consideration
+            if (!e.getNationality().equals("USA")){
+                tax += e.getIncome() * 0.1;
+            }
+
+            taxes += tax;
+        }
+
+        return taxes;
     }
 }
